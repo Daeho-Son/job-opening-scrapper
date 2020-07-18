@@ -1,0 +1,7 @@
+# OS Files #
+.DS_Store
+
+*challenge/__pycahe__/
+*challenge/.vscode/
+*challenge/review/
+*challenge/venv/
