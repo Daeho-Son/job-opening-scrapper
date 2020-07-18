@@ -1,7 +1,8 @@
 # OS Files #
 .DS_Store
 
-*challenge/__pycahe__/
+# Folders #
+*challenge/__pycache__/
 *challenge/.vscode/
 *challenge/review/
 *challenge/venv/
