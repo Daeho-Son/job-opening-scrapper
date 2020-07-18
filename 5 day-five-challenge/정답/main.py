@@ -21,7 +21,7 @@ for row in rows:
     name = items[0].text
     code = items[2].text
     if name and code:
-        if name != "No universal currency":  # 필요 없는 함수
+        if name != "No universal currency":  # 필요  없는 코드.
             country = {"name": name.capitalize(), "code": code}
             countries.append(country)
 
