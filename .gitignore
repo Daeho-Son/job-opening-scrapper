@@ -5,6 +5,6 @@
 *challenge/__pycache__/
 *challenge/.vscode/
 *challenge/review/
-*challenge/venv/
-정답/
+*challenge/.venv/
+*challenge/solve/
 

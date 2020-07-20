@@ -15,6 +15,7 @@ def get_currency_codes():
             currency_dic_list.append({"country": name, "code": code})
     return currency_dic_list
 
+
 # 환율을 가져오는 함수.
 def get_exchage(from_code, to_code, amount):
     url = f"https://transferwise.com/gb/currency-converter/{from_code}-to-{to_code}-rate?amount={amount}"
