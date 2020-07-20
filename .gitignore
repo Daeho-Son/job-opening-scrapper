@@ -1,0 +1,10 @@
+# OS Files #
+.DS_Store
+
+# Folders #
+*challenge/__pycache__/
+*challenge/.vscode/
+*challenge/review/
+*challenge/venv/
+정답/
+
