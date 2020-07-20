@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-# 알바몬에 게시된 브랜드들의 name과 url를 가져오는 함수.
 def get_alba_superbrands():
     alba_url = "http://www.alba.co.kr"
     alba_soup = BeautifulSoup(requests.get(alba_url).text, "html.parser")
@@ -23,7 +22,6 @@ def get_alba_superbrands():
     return brands
 
 
-# 가져온 브랜드의 사이트에서 일반 채용정보를 가져오는 함수.
 def get_brand_recruits(brand_name, url):
     recruits = []
     page_count = 0

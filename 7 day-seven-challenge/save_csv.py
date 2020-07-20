@@ -7,7 +7,7 @@ def save_brand_recruits(brand_name, brand_recruits):
     try:
         if not (os.path.isdir("csv_files")):
             os.makedirs(os.path.join("csv_files"))
-    except OSError as e:    # 경로가 이미 존재할 경우 에러
+    except OSError as e:
         if e.errno != errno.EEXIST:
             print("Failed to create directory!")
             raise
