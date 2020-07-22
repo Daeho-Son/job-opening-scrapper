@@ -2,9 +2,14 @@
 .DS_Store
 
 # Folders #
-*challenge/__pycache__/
-*challenge/.vscode/
-*challenge/review/
-*challenge/.venv/
-*challenge/solve/
+.pytest_cache
+.vscode/
+__pycache__/
+review/
+solve/
+venv/
+.venv/
+.python-version
+requirements.txt
+test*.py
 practice/
