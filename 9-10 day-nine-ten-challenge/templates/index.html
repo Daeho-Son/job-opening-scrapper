@@ -1,12 +1,79 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
-</head>
-
-<body>
-  
-</body>
-
+  <head>
+    <title>Nomad News | {{order_by}}</title>
+    <style>
+      section {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(1, 1fr);
+      }
+    </style>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet" />
+  </head>
+  <body>
+    {% if order_by=="new" %}
+    <header>
+      <div class="title">
+        <h1>Noamd News</h1>
+        <div class="orderby">
+          Order by:
+          <a href="/?order_by=popular">Popular</a>
+          |
+          <strong>New</strong>
+        </div>
+      </div>
+    </header>
+    <main>
+      {% for news_data in news_datas %}
+      <div>
+        <div>
+          <a href="/{{news_data.objectID}}" target="_blank"
+            >{{news_data.title}}
+          </a>
+          (
+          <a href="{{news_data.url}}" target="_blank" >{{news_data.url}}</a>
+          )
+        </div>
+        <div>
+          {{news_data.points}} points | By: {{news_data.author}} |
+          {{news_data.num_comments}} comments
+        </div>
+      </div>
+      <hr />
+      {% endfor %}
+    </main>
+    {% else %}
+    <header>
+      <div class="title">
+        <h1>Noamd News</h1>
+        <div class="orderby">
+          Order by:
+          <strong>Popular</strong>
+          |
+          <a href="/?order_by=new">New</a>
+        </div>
+      </div>
+    </header>
+    <main>
+      {% for news_data in news_datas %}
+      <div>
+        <div>
+          <a href="/{{news_data.objectID}}" target="_blank"
+            >{{news_data.title}}
+          </a>
+          (
+          <a href="{{news_data.url}}" target="_blank" >{{news_data.url}}</a>
+          )
+        </div>
+        <div>
+          {{news_data.points}} points | By: {{news_data.author}} |
+          {{news_data.num_comments}} comments
+        </div>
+      </div>
+      <hr />
+      {% endfor %}
+    </main>
+    {% endif %}
+  </body>
 </html>
