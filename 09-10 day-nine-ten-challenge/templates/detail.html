@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Nomad News | {{comment_data.title}}</title>
     <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet" />
+    <title>Nomad News | {{detail_data.title}}</title>
   </head>
 
   <body>
     <header>
-      <h1>{{comment_data.title}}</h1>
+      <h1>{{detail_data.title}}</h1>
       <div>
-        {{comment_data.points}} points | By {{comment_data.author}} |
-        <a href="{{comment_data.url}}"> {{comment_data.url}}</a>
+        {{detail_data.points}} points | By {{author}} |
+        <a href="{{detail_data.url}}">{{detail_data.url}}</a>
       </div>
     </header>
     <main>
-      {% for children in comment_data.children %} {% if children.author == "" %}
-      <div>{{children.text}}</div>
-      <hr />
-      {% else %}
+      {% for data in detail_data.get("children") %}
       <div>
-        <strong>{{children.author}}</strong>
-        {% autoescape false %}
-        <p></p>
-        <p>{{children.text}}</p>
-        <p></p>
-        {% endautoescape %}
+        {% if data.text == None %} [deleted] {% else %}
+        <strong>{{data.author}}</strong>
+        <p>{{data.text | safe}}</p>
+        {% endif %}
       </div>
       <hr />
-      {% endif %} {% endfor %}
+      {% endfor %}
     </main>
   </body>
 </html>
