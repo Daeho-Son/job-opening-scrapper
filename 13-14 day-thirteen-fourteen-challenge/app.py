@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 from get_datas import get_job_datas
-from exporter import export_to_file
+from save_csv import export_to_file
 
 db = {}
 
@@ -24,6 +24,7 @@ def jobs():
         if not job_datas:
             job_datas = get_job_datas(term)
             db[term] = job_datas
+        export_to_file(job_datas, term)
     except:
         return redirect("/")
     return render_template(
@@ -31,18 +32,6 @@ def jobs():
     )
 
 
-@app.route("/export")
-def export():
-    try:
-        term = request.args.get("term")
-        if not term:
-            raise Exception()
-        term = term.lower()
-        job_datas = db.get(term)
-        if not job_datas:
-            job_datas = get_job_datas(term)
-            db[term] = job_datas
-        export_to_file(job_datas)
-    except:
-        return redirect("/")
-    return redirect("/")
+@app.route("/export/<kimchi>")
+def export(kimchi):
+    return send_file(kimchi)

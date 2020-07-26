@@ -71,9 +71,7 @@ def get_remote(job):
     if remote_soup.find("title").text == "Not found":
         print(f"remoteok에는 {job}에 관한 채용 정보가 없어")
         return []
-    remote_select = remote_soup.select(
-        "div.page > div.container > table#jobsboard tr.job"
-    )
+    remote_select = remote_soup.select("table#jobsboard tr.job")
     remote_datas = []
     for count, data in enumerate(remote_select):
         title = (
