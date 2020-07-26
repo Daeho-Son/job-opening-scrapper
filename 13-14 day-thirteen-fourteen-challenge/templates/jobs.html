@@ -7,11 +7,26 @@
   <body>
     <header>
       <h1>Remote Jobs</h1>
-      <h2>{{term}} jobs found.</h2>
-      <h3>Export to CSV</h3>
+      <h2>{{count_job_datas}} {{term}} jobs found.</h2>
+      <a href="/export?term={{term}}">
+        <h3>Export to CSV</h3>
+      </a>
+      <div></div>
       <a href="/">
         <h4>← Go Back</h4>
       </a>
     </header>
+    <main>
+      {% for data in job_datas %}
+      <div>
+        <h2>{{data.title}}</h2>
+        <h3>{{data.company}}</h3>
+        <a href="{{data.url}}" target="_blank">
+          <h3>Apply</h3>
+        </a>
+        <hr />
+      </div>
+      {% endfor %}
+    </main>
   </body>
 </html>

@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from get_datas import get_job_datas
-
+from exporter import export_to_file
 
 db = {}
 
@@ -15,16 +15,34 @@ def home():
 
 @app.route("/search")
 def jobs():
-    term = request.args.get("term")
-    if term in db:
-        job_datas = db.get("term")
-    else:
-        job_datas = get_job_datas(term)
-        db[term] = job_datas
-    return render_template("jobs.html", term=term)
+    try:
+        term = request.args.get("term")
+        if not term:
+            raise Exception()
+        term = term.lower()
+        job_datas = db.get(term)
+        if not job_datas:
+            job_datas = get_job_datas(term)
+            db[term] = job_datas
+    except:
+        return redirect("/")
+    return render_template(
+        "jobs.html", term=term, job_datas=job_datas, count_job_datas=len(job_datas)
+    )
 
 
-@app.route("/download")
-def download():
-    return
-
+@app.route("/export")
+def export():
+    try:
+        term = request.args.get("term")
+        if not term:
+            raise Exception()
+        term = term.lower()
+        job_datas = db.get(term)
+        if not job_datas:
+            job_datas = get_job_datas(term)
+            db[term] = job_datas
+        export_to_file(job_datas)
+    except:
+        return redirect("/")
+    return redirect("/")
