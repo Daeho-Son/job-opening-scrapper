@@ -2,16 +2,15 @@
 .DS_Store
 
 # Folders #
+practice/
 .pytest_cache/
 .vscode/
 __pycache__/
 review/
 solve/
 venv/
-.venv/
-practice/
+*try/
 
 # Files #
-.python-version
 requirements.txt
 test*.py
